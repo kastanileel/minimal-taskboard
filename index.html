@@ -6,13 +6,27 @@
 </head>
 <body>
     <h1>Modify JSON Data</h1>
+    <button  id="load-json-button" onclick="loadTaskboardJSON()">Load</button>
+    <button id="download-json-button" onclick="downloadTaskboardJSON()">Save</button>
+    <button id="add-task-button" onclick="showPopup()">Add</button>
+    
+    <div class="three-columns-grid">
+        <div id="todo-column">TODO</div>
+        <div id="progress-column">IN PROGRESS</div>
+        <div id="done-column">DONE</div>
+    </div>
+
+    <div class="popup-overlay" id="popupOverlay"></div>
+    <div class="popup" id="popup">
+        <h2>Add New Task</h2>
+        <input type="text" id="taskName" placeholder="Name">
+        <input type="text" id="taskDescription" placeholder="Description">
+        <button onclick="submitTask()">Submit</button>
+        <button class="close" onclick="hidePopup()">Close</button>
+    </div>
+
     <script src="app.js"></script>
     <link rel="stylesheet" href="style.css">
-
-    <div class="three-columns-grid">
-        <div id="todo-column">1</div>
-        <div id="progress-column">2</div>
-        <div id="done-column">3</div>
-    </div>
+    <link href='https://fonts.googleapis.com/css?family=Orbitron' rel='stylesheet'>
 </body>
 </html>

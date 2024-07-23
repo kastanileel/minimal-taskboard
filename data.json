@@ -1,3 +1,17 @@
-{
-    "key": "value"
-}
+[
+  {
+    "name": "Task 1",
+    "description": "Description of Task 1",
+    "state": "todo"
+  },
+  {
+    "name": "Task 2",
+    "description": "Description of Task 2",
+    "state": "progress"
+  },
+  {
+    "name": "Task 3",
+    "description": "Description of Task 3",
+    "state": "done"
+  }
+]
