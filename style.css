@@ -1,0 +1,21 @@
+/* container */
+.three-columns-grid {
+    display: grid;
+    grid-auto-rows: 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+/* columns */
+.three-columns-grid > * {
+    padding:1rem;
+}
+
+#todo-column {
+    background-color: #FCD0BA;
+}
+#progress-column {
+    background-color: #FEFAD4;
+}
+#done-column {
+    background-color: #8FB9A8;
+}
