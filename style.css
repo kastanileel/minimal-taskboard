@@ -63,3 +63,11 @@
 .popup button.close {
     background-color: #dc3545;
 }
+
+.task {
+    padding: 10px;
+    margin: 10px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    cursor: move;
+}

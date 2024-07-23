@@ -1,4 +1,4 @@
-let tasks;
+let tasks = [];
 let fileHandle;
 
 async function downloadTaskboardJSON() {
@@ -47,8 +47,9 @@ async function loadTaskboardJSON() {
     
         const file = await fileHandle.getFile();
         const contents = await file.text();
-        tasks = JSON.parse(contents);
-        tasks.forEach(element => {
+        const parsedTasks = JSON.parse(contents);
+        parsedTasks.forEach(element => {
+            tasks.push(element)
             addTaskToColumn(element);
         });
     } catch (error) {
@@ -80,9 +81,9 @@ async function submitTask() {
         'description': description,
         'state': "todo"
     })
-
+    
+    await tasks.push(newTask)
     addTaskToColumn(newTask)
-    tasks.push(newTask)
 
     hidePopup();
 }
@@ -97,7 +98,7 @@ async function addTaskToColumn(task) {
             column = document.getElementById("progress-column");
             break;
         case 'done':
-            column = document.getElementByIdass("done-column");
+            column = document.getElementById("done-column");
             break;
         default:
             console.error('Unknown task state:', task.state);
@@ -105,10 +106,45 @@ async function addTaskToColumn(task) {
     }
     const taskElement = document.createElement("div");
     taskElement.className = "task";
+    taskElement.id = `${tasks.indexOf(task)}`;
     taskElement.innerHTML = `
         <h3>${task.name}</h3>
         <p>${task.description}</p>
     `;
+
+    // Set the task element as draggable
+    taskElement.draggable = true;
+    taskElement.ondragstart = function (event) {
+        event.dataTransfer.setData("text/plain", event.target.id);
+        event.dataTransfer.effectAllowed = "move";
+    };
     column.appendChild(taskElement);
+}
+
+
+function allowDrop(ev) {
+    ev.preventDefault();
+}
+
+function drag(ev) {
+    ev.dataTransfer.setData("text", ev.target.id);
+}
+
+function drop(ev) {
+    ev.preventDefault();
+    var taskId = ev.dataTransfer.getData("text");
+    var taskElement = document.getElementById(taskId);
+    var targetColumn = ev.target.closest('.column');
+
+    console.log("Dropped" + taskId + ", " + taskElement + ", " +targetColumn)
+
+    if (targetColumn && taskElement) {
+        targetColumn.appendChild(taskElement);
+
+        // Update the task state based on the new column
+       
+        let task = tasks[taskId];
+        task.state = targetColumn.id.replace('-column', '');
+    }
 }
 

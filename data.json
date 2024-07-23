@@ -1,13 +1,18 @@
 [
   {
+    "name": "asdf",
+    "description": "asdf",
+    "state": "done"
+  },
+  {
     "name": "Task 1",
     "description": "Description of Task 1",
-    "state": "todo"
+    "state": "done"
   },
   {
     "name": "Task 2",
     "description": "Description of Task 2",
-    "state": "progress"
+    "state": "done"
   },
   {
     "name": "Task 3",

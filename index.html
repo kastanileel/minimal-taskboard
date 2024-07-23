@@ -5,15 +5,15 @@
     <title>Minimal Taskboard</title>
 </head>
 <body>
-    <h1>Modify JSON Data</h1>
+    <h1 style="font-family: Orbitron;">Minimal Taskboard</h1>
     <button  id="load-json-button" onclick="loadTaskboardJSON()">Load</button>
     <button id="download-json-button" onclick="downloadTaskboardJSON()">Save</button>
     <button id="add-task-button" onclick="showPopup()">Add</button>
     
     <div class="three-columns-grid">
-        <div id="todo-column">TODO</div>
-        <div id="progress-column">IN PROGRESS</div>
-        <div id="done-column">DONE</div>
+        <div id="todo-column" class="column" ondrop="drop(event)" ondragover="allowDrop(event)">TODO</div>
+        <div id="progress-column" class="column"  ondrop="drop(event)" ondragover="allowDrop(event)">IN PROGRESS</div>
+        <div id="done-column" class="column" ondrop="drop(event)" ondragover="allowDrop(event)">DONE</div>
     </div>
 
     <div class="popup-overlay" id="popupOverlay"></div>
