@@ -108,7 +108,12 @@ async function addTaskToColumn(task) {
     taskElement.className = "task";
     taskElement.id = `${tasks.indexOf(task)}`;
     taskElement.innerHTML = `
-        <h3>${task.name}</h3>
+        <div class="task-header">
+            <h3>${task.name}</h3>
+            <button class="delete-task-button" onclick="deleteTask(${tasks.indexOf(task)})">
+                <i class="fas fa-trash"></i>
+            </button>
+        </div>
         <p>${task.description}</p>
     `;
 
@@ -119,6 +124,13 @@ async function addTaskToColumn(task) {
         event.dataTransfer.effectAllowed = "move";
     };
     column.appendChild(taskElement);
+}
+
+function deleteTask(taskId) {
+    tasks.pop(taskId)
+    const taskElement = document.getElementById(taskId);
+    taskElement.parentNode.removeChild(taskElement);
+    // Optionally, remove the task from the tasks array or perform other actions
 }
 
 

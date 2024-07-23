@@ -1,3 +1,29 @@
+/* color scheme from: https://mir-s3-cdn-cf.behance.net/project_modules/1400/1a63e761175953.5c9cf674ca594.png */
+
+body {
+    background-color: #765D69;
+}
+
+h1 {
+    font-family: Orbitron; 
+    background-color: #FFFFFF33;
+    padding:1rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.button-bar {
+    display: flex;
+    gap: 1rem;
+}
+
+button {
+    font-family: Orbitron;
+    font-size: 18px;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+}
+
 /* container */
 .three-columns-grid {
     display: grid;
@@ -67,7 +93,25 @@
 .task {
     padding: 10px;
     margin: 10px;
-    background-color: #f0f0f0;
+    background-color: #ffffff33;
     border: 1px solid #ccc;
-    cursor: move;
+    transition: all .2s ease-in-out; 
+}
+
+.task:hover {
+    background-color: #ffffff44;
+    transform: scale(1.05);
+}
+
+.task-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.delete-task-button {
+    background: none;
+    border: none;
+    color: red;
+    cursor: pointer;
+    font-size: 1.2rem;
 }
