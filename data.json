@@ -1,1 +1,12 @@
-[]
+[
+  {
+    "name": "Example",
+    "description": "This\nis\nan\nexample.",
+    "state": "progress"
+  },
+  {
+    "name": "Example2",
+    "description": "^^",
+    "state": "todo"
+  }
+]

@@ -114,7 +114,7 @@ async function addTaskToColumn(task) {
                 <i class="fas fa-trash"></i>
             </button>
         </div>
-        <p>${task.description}</p>
+        <p>${task.description.replace(/\n/g, '<br>')}</p>
     `;
 
     // Set the task element as draggable
