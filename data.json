@@ -1,12 +1,28 @@
-[
-  {
-    "name": "Example",
-    "description": "This\nis\nan\nexample.",
-    "state": "progress"
-  },
-  {
-    "name": "Example2",
-    "description": "^^",
-    "state": "todo"
-  }
-]
+{
+  "tasks": [
+    {
+      "name": "Example",
+      "description": "This\nis\nan\nexample.",
+      "state": "progress"
+    },
+    {
+      "name": "Example2",
+      "description": "^^",
+      "state": "todo"
+    }
+  ],
+  "dates": [
+    {
+      "date": "2024-07-23",
+      "type": "commit"
+    },
+    {
+      "date": "2024-07-24",
+      "type": "commit"
+    },
+    {
+      "date": "2024-07-26",
+      "type": "done"
+    }
+  ]
+}

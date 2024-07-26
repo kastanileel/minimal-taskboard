@@ -20,6 +20,26 @@
         <div id="done-column" class="column" ondrop="drop(event)" ondragover="allowDrop(event)">DONE</div>
     </div>
 
+    <div id="activity-log">
+        <h1>Days of Done</h1>
+        <div id="calendar-parent">   
+            <div id="calendar-container">
+                <div id="days-of-week">
+                    <div>Sun</div>
+                    <div>Mon</div>
+                    <div>Tue</div>
+                    <div>Wed</div>
+                    <div>Thu</div>
+                    <div>Fri</div>
+                    <div>Sat</div>
+                </div>
+                <div id="calendar"></div> <!-- Contribution calendar -->
+            </div>
+        </div>
+    </div>
+    
+    
+
     <div class="popup-overlay" id="popupOverlay"></div>
     <div class="popup" id="popup">
         <h2>Add New Task</h2>
@@ -30,6 +50,7 @@
     </div>
 
     <script src="app.js"></script>
+    <script src="calendar.js"></script>
     <link rel="stylesheet" href="style.css">
     <link href='https://fonts.googleapis.com/css?family=Orbitron' rel='stylesheet'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">

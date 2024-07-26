@@ -2,14 +2,17 @@ let tasks = [];
 let fileHandle;
 
 async function downloadTaskboardJSON() {
+    const json = JSON.stringify({
+        "tasks": tasks,
+        "dates": dates
+    }, null, 2);
     try {
         const writable = await fileHandle.createWritable();
-        await writable.write(JSON.stringify(tasks, null, 2));
+        await writable.write(json);
         await writable.close();
         alert('Tasks saved successfully.');
     } catch (error) {
         try {
-            const json = JSON.stringify(tasks, null, 2);
             const blob = new Blob([json], { type: 'application/json' });
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
@@ -41,17 +44,25 @@ async function loadTaskboardJSON() {
                 }
             ],
             excludeAcceptAllOption: true,
-            multiple: false
+            multiple: false,
+            startIn: "desktop"
         });
-        console.log('File selected successfully.');
     
         const file = await fileHandle.getFile();
         const contents = await file.text();
-        const parsedTasks = JSON.parse(contents);
-        parsedTasks.forEach(element => {
+        const parsedFile = JSON.parse(contents);
+        parsedFile.tasks.forEach(element => {
             tasks.push(element)
             addTaskToColumn(element);
         });
+
+        parsedFile.dates.forEach(element => {
+            dates.push(element)
+            addToCalendar(element)
+        })
+
+        
+        
     } catch (error) {
         console.error('Error selecting file:', error);
     }
@@ -70,10 +81,6 @@ function hidePopup() {
 async function submitTask() {
     const name = document.getElementById('taskName').value;
     const description = document.getElementById('taskDescription').value;
-
-    // Add your task addition logic here
-    console.log('Task Name:', name);
-    console.log('Task Description:', description);
 
     // Example of calling the addNewTask function
     const newTask = ({
@@ -148,8 +155,6 @@ function drop(ev) {
     var taskElement = document.getElementById(taskId);
     var targetColumn = ev.target.closest('.column');
 
-    console.log("Dropped" + taskId + ", " + taskElement + ", " +targetColumn)
-
     if (targetColumn && taskElement) {
         targetColumn.appendChild(taskElement);
 
@@ -157,6 +162,24 @@ function drop(ev) {
        
         let task = tasks[taskId];
         task.state = targetColumn.id.replace('-column', '');
+
+        let today_date_string = new Date().toISOString().split('T')[0]
+
+        if(!dates.some(element => element.date === today_date_string)) {
+            let date_type = "done"
+            if(task.state !== "done")
+                date_type = "commit"
+            const new_element = {"date": today_date_string, "type": date_type}
+            dates.push(new_element)
+            addToCalendar(new_element)
+        }
+        else {
+            let idx = dates.findIndex(dateObj => dateObj.date === today_date_string);
+            if(dates[idx].type == "commit" && task.state == "done" ){
+                dates[idx].type = "done"
+                addToCalendar(dates[idx])
+            }
+        }
     }
 }
 
